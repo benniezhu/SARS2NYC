@@ -26,7 +26,7 @@ replace ChronicLung = 1 if CHBRON31 == 1 | ASSTIL31 == 1 | EMPHDX == 1
 gen HeartDisease = 0
 replace HeartDisease = 1 if CHDDX == 1 | MIDX == 1 | OHRTDX == 1 | STRKDX == 1
 
-
+* cancer and diabetes definitions are for any cancer dx 
 gen Diabetes = 0
 replace Diabetes = 1 if DIABDX == 1
 
