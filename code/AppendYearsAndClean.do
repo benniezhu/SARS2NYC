@@ -45,10 +45,10 @@ foreach y in $year{
 
 gen FYI = 5
 replace FYI = 4  if PRI == 1
-replace FYI = 0 if UNINS == 1
 replace FYI = 1 if MCR == 1
 replace FYI = 2 if MCD == 1
 replace FYI = 3 if MCD ==1 & MCR == 1
+replace FYI = 0 if UNINS == 1
 label define FYI 0 "UninsuredAllYear" 1 "MedicareAllYear" 2 "MedicaidAllYear" 3 "Medicaid+MedicareAllYear" 4 "PrivateInsuranceAllYear" 5 "AllOther"
 label values FYI FYI
 
