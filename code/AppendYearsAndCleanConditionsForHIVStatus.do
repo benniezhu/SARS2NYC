@@ -13,4 +13,6 @@ replace HIV = 1 if CCCODEX == "005" | ICD10CDX == "Z21"
 keep if HIV == 1
 keep DUPERSID year HIV
 
+duplicates drop
+
 save "C:\Users\bz22\Desktop\SARS2NYCData\HIVStatus2014-2017.dta"
