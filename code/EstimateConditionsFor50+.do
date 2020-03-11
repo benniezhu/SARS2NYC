@@ -26,7 +26,7 @@ replace ChronicLung = 1 if CHBRON31 == 1 | ASSTIL31 == 1 | EMPHDX == 1
 gen HeartDisease = 0
 replace HeartDisease = 1 if CHDDX == 1 | MIDX == 1 | OHRTDX == 1 | STRKDX == 1
 
-* cancer and diabetes definitions are for any cancer dx 
+* cancer and diabetes definitions are for any cancer dx
 gen Diabetes = 0
 replace Diabetes = 1 if DIABDX == 1
 
@@ -76,3 +76,5 @@ replace FourCondition = 1 if NumCond == 4
 table FYI AgeCat [fw=round(PERWT)], c(mean ZeroConditions mean OneCondition mean TwoCondition mean ThreeCondition mean FourCondition)
 
 table FYI AgeCat SEX [fw=round(PERWT)], c(mean ZeroConditions mean OneCondition mean TwoCondition mean ThreeCondition mean FourCondition)
+
+save "C:\Users\bz22\Desktop\SARS2NYCData\MEPS2014-2017Age50+NEOnly.dta", replace
