@@ -54,4 +54,5 @@ label values FYI FYI
 
 keep if REGION31 == 1
 
+
 save "C:\Users\bz22\Desktop\SARS2NYCData\MEPS2014-2017Age50+NEOnly.dta"
