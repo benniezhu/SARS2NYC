@@ -30,5 +30,49 @@ replace HeartDisease = 1 if CHDDX == 1 | MIDX == 1 | OHRTDX == 1 | STRKDX == 1
 gen Diabetes = 0
 replace Diabetes = 1 if DIABDX == 1
 
-gen CANCER = 0
-replace CANCER = 1 if CANCERDX == 1
+gen Cancer = 0
+replace Cancer = 1 if CANCERDX == 1
+
+*Merge HIV info from medical condition files
+gen year = .
+foreach y in $year{
+  replace year = 20`y' if PERWT`y'F != .
+}
+
+merge 1:1 DUPERSID year using "C:\Users\bz22\Desktop\SARS2NYCData\HIVStatus2014-2017.dta"
+drop if _merge == 2
+
+replace HIV = 0 if HIV == .
+
+gen NumCond = HIV + HeartDisease + Cancer + Diabetes + ChronicLung
+
+* Make tables?
+table FYI AgeCat [fw=round(PERWT)], c(mean Diabetes mean HeartDisease mean Cancer mean ChronicLung mean HIV)
+
+table FYI AgeCat [fw=round(PERWT)], c(mean Diabetes)
+table FYI AgeCat [fw=round(PERWT)], c(mean HeartDisease)
+table FYI AgeCat [fw=round(PERWT)], c(mean Cancer)
+table FYI AgeCat [fw=round(PERWT)], c(mean ChronicLung)
+table FYI AgeCat [fw=round(PERWT)], c(mean HIV)
+
+table FYI AgeCat SEX [fw=round(PERWT)], c(mean Diabetes mean HeartDisease mean Cancer mean ChronicLung mean HIV)
+
+*Table by number of conditions
+gen ZeroConditions = 0
+replace ZeroConditions = 1 if NumCond == 0
+
+gen OneCondition = 0
+replace OneCondition = 1 if NumCond == 1
+
+gen TwoCondition = 0
+replace TwoCondition = 1 if NumCond == 2
+
+gen ThreeCondition = 0
+replace ThreeCondition = 1 if NumCond == 3
+
+gen FourCondition = 0
+replace FourCondition = 1 if NumCond == 4
+
+table FYI AgeCat [fw=round(PERWT)], c(mean ZeroConditions mean OneCondition mean TwoCondition mean ThreeCondition mean FourCondition)
+
+table FYI AgeCat SEX [fw=round(PERWT)], c(mean ZeroConditions mean OneCondition mean TwoCondition mean ThreeCondition mean FourCondition)
