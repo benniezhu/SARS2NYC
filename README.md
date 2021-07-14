@@ -4,6 +4,10 @@ This project was presented by Scarlett at the 2020 APPAM meeting. We used the AC
 
 This repository contains the code that involves the MEPS. We used the Medicaid data to estimate the number of people with these conditions. Using the MEPS, we then calculated the ratio of privately insured people to Medicaid people with these conditions and repeated this for other insurances to scale the Medicaid data esimates (which theoretically should be better than the MEPS).
 
+## Output  
+
+The result of this work are in the `AgeCatSexTableSherry_BenEdits(AutoRecovered)` sheets, which puts together all of the ACS, MEPS, etc pieces of the project. `MEPSEstimates` is the MEPS results.
+
 
 
 ### Usage:
